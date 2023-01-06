@@ -99,8 +99,8 @@ h2 {
             let jsonParams = JSON.stringify(result);
             console.log(jsonParams);
             let jsonArr = JSON.parse(jsonParams);
-            let state = JSON.parse(jsonArr.state);
-            let state = decodeURI(atob(state));
+            let parseState = JSON.parse(jsonArr.state);
+            let state = decodeURI(atob(parseState));
             let script = state.script;
 
             window.FileMaker.PerformScript(script, jsonParams);
