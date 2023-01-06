@@ -99,7 +99,7 @@ h2 {
             let jsonParams = JSON.stringify(result);
             console.log(jsonParams);
             let jsonArr = JSON.parse(jsonParams);
-            let parseState = JSON.parse(jsonArr.state);
+            let parseState = JSON.parse(Buffer.from(jsonArr.state, 'base64').toString()));
             let state = decodeURI(atob(parseState));
             let script = state.script;
 
