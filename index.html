@@ -97,6 +97,7 @@ h2 {
             });
 
             let jsonParams = JSON.stringify(result);
+            console.log(jsonParams);
             let jsonArr = JSON.parse(jsonParams);
             let state = JSON.parse(DecodeURI(atob(jsonArr.state)));
             let script = state.script;
