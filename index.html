@@ -108,11 +108,7 @@ h2 {
             let state = jsonArr.state;
             let script = state.script;
 
-            try {
-              FileMaker.PerformScript(script, jsonParams);
-            } catch (error) {
-              console.error(error);
-            }
+            FileMaker.PerformScript(script, jsonParams);
 
         }
 
