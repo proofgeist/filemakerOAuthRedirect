@@ -109,6 +109,7 @@ h2 {
             let script = state.script;
 
             try {
+                console.log("try");
               window.FileMaker.PerformScript(script, jsonParams);
             } catch (error) {
               console.error(error);
