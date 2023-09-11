@@ -108,7 +108,12 @@ h2 {
             let state = jsonArr.state;
             let script = state.script;
 
-            window.FileMaker.PerformScript(script, jsonParams);
+            try {
+              window.FileMaker.PerformScript(script, jsonParams);
+            } catch (error) {
+              console.error(error);
+            }
+
         }
 
         document.addEventListener("filemaker-ready", () => {
