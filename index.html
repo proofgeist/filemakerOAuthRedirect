@@ -106,10 +106,8 @@ h2 {
             let jsonParams = JSON.stringify(result);
             let jsonArr = JSON.parse(jsonParams);
             let state = jsonArr.state;
-            let script = state;
+            let script = state.script;
 
-            console.log(jsonArr);
-            console.log(jsonArr.state);
 
             window.FileMaker.PerformScript(script, jsonParams);
         }
