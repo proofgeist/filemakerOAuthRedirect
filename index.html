@@ -109,7 +109,7 @@ h2 {
             let script = state.script;
 
             try {
-              window.FileMaker.PerformScript(script, jsonParams);
+              FileMaker.PerformScript(script, jsonParams);
             } catch (error) {
               console.error(error);
             }
