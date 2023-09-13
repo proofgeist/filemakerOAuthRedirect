@@ -143,11 +143,7 @@
           let script = stateArr.script;
 
           if (type === "webviewer") {
-            try {
               window.FileMaker.PerformScript(script, jsonParams);
-            } catch (error) {
-              console.log(error);
-            }
           } else {
             let file = stateArr.file;
             let version = stateArr.version;
@@ -163,11 +159,8 @@
               param;
             let fmpURL = url;
 
-            try {
-              window.location = fmpURL;
-            } catch (error) {
-              console.log(error);
-            }
+             window.location = fmpURL;
+
           }
         }
 
