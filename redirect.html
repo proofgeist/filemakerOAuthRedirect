@@ -40,8 +40,14 @@
         width: 800px;
       }
 
-      h2 {
+      #resultVisible {
         padding: 0px 10px 0px 10px;
+        display: block;
+      }
+
+      #resultHidden {
+        padding: 0px 10px 0px 10px;
+        display: none;
       }
 
       .centered a img {
@@ -125,7 +131,9 @@
           </g>
         </svg>
 
-        <h2 class="result">Redirect Result Passed to FileMaker</h2>
+        <h2 id="banner" class="resultHidden">
+          Redirect Result Passed to FileMaker
+        </h2>
 
         <!--- </div> --->
       </div>
@@ -140,26 +148,20 @@
           if (type === "webviewer") {
             try {
               window.FileMaker.PerformScript(script, jsonParams);
+              document.getElementById("banner").className = "resultVisible";
             } catch (error) {
               console.log(error);
             }
           } else {
             let file = stateArr.file;
-            let version = stateArr.version;
             let param = encodeURIComponent(jsonParams);
             let url =
-              "fmp" +
-              version +
-              "://$/" +
-              file +
-              "?script=" +
-              script +
-              "&param=" +
-              param;
+              "fmp://$/" + file + "?script=" + script + "&param=" + param;
             let fmpURL = url;
 
             try {
               window.location = fmpURL;
+              document.getElementById("banner").className = "resultVisible";
             } catch (error) {
               console.log(error);
             }
@@ -200,16 +202,16 @@
         let jsonArr = JSON.parse(jsonParams);
         let state = jsonArr.state;
         let stateArr = JSON.parse(state);
-        let version = stateArr.version;
+        let authType = stateArr.auth_type;
 
         if (!version || version === undefined || version.length === 0) {
           document.addEventListener("filemaker-ready", () => {
             console.log("FileMaker is ready!");
-            passURLParameters("webviewer", jsonParams);
+            passURLParameters(authType, jsonParams);
           });
         } else {
-          console.log("not filemaker webviewer", jsonParams);
-          passURLParameters("fmpURL");
+          console.log("not filemaker webviewer");
+          passURLParameters(authtype, jsonParams);
         }
       </script>
     </div>
