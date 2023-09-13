@@ -108,6 +108,8 @@ h2 {
             let version = stateArr.version;
             let params = encodeURIComponent(jsonArr);
             let fmpURL = "fmp" + version + "://$/" + file + "?script=" + script+ "&param=" + jsonParams;
+            console.log(params);
+            console.log(fmpURL);
 
             try{
                   window.location = fmpURL;
