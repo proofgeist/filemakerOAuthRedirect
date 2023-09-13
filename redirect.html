@@ -132,6 +132,8 @@
 
       <script>
         function passURLParameters(type) {
+          console.log(type);
+          
           let result = parseQS();
 
           let jsonParams = JSON.stringify(result);
@@ -211,6 +213,7 @@
             passURLParameters("webviewer");
           });
         } else {
+          console.log("not filemaker webviewer");
           passURLParameters("fmpURL");
         }
       </script>
