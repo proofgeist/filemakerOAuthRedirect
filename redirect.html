@@ -131,19 +131,18 @@
       </div>
 
       <script>
-        function passURLParameters(type) {
-          console.log(type);
-          
-          let result = parseQS();
-
-          let jsonParams = JSON.stringify(result);
+        function passURLParameters(type, jsonParams) {
           let jsonArr = JSON.parse(jsonParams);
           let state = jsonArr.state;
           let stateArr = JSON.parse(state);
           let script = stateArr.script;
 
           if (type === "webviewer") {
+            try {
               window.FileMaker.PerformScript(script, jsonParams);
+            } catch (error) {
+              console.log(error);
+            }
           } else {
             let file = stateArr.file;
             let version = stateArr.version;
@@ -159,8 +158,11 @@
               param;
             let fmpURL = url;
 
-             window.location = fmpURL;
-
+            try {
+              window.location = fmpURL;
+            } catch (error) {
+              console.log(error);
+            }
           }
         }
 
@@ -200,13 +202,13 @@
         let stateArr = JSON.parse(state);
         let version = stateArr.version;
 
-        if (!version || version === undefined || version.length === 0 ) {
+        if (!version || version === undefined || version.length === 0) {
           document.addEventListener("filemaker-ready", () => {
             console.log("FileMaker is ready!");
-            passURLParameters("webviewer");
+            passURLParameters("webviewer", jsonParams);
           });
         } else {
-          console.log("not filemaker webviewer");
+          console.log("not filemaker webviewer", jsonParams);
           passURLParameters("fmpURL");
         }
       </script>
