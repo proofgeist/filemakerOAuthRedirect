@@ -204,7 +204,7 @@
         let stateArr = JSON.parse(state);
         let authType = stateArr.auth_type;
 
-        if (!version || version === undefined || version.length === 0) {
+        if (authType === "webviewer") {
           document.addEventListener("filemaker-ready", () => {
             console.log("FileMaker is ready!");
             passURLParameters(authType, jsonParams);
