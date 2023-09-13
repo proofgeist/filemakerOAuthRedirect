@@ -105,9 +105,9 @@ h2 {
             let stateArr = JSON.parse(state);
             let script = stateArr.script;
             let file = stateArr.file;          
-            let version = stateArr.version;          
-            let url = "fmp" + version + "://$/" + file + "?script=" + script+ "&param=" + jsonParams;
-            let fmpURL = encodeURIComponent(url);
+            let version = stateArr.version;
+            let params = encodeURIComponent(jsonArr);
+            let fmpURL = "fmp" + version + "://$/" + file + "?script=" + script+ "&param=" + jsonParams;
 
             try{
                   window.location = fmpURL;
