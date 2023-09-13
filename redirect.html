@@ -40,14 +40,8 @@
         width: 800px;
       }
 
-      #resultVisible {
+      h2 {
         padding: 0px 10px 0px 10px;
-        display: block;
-      }
-
-      #resultHidden {
-        padding: 0px 10px 0px 10px;
-        display: none;
       }
 
       .centered a img {
@@ -148,7 +142,7 @@
           if (type === "webviewer") {
             try {
               window.FileMaker.PerformScript(script, jsonParams);
-              document.getElementById("banner").className = "resultVisible";
+              document.getElementById("banner").style.display = "block";
             } catch (error) {
               console.log(error);
             }
@@ -161,7 +155,7 @@
 
             try {
               window.location = fmpURL;
-              document.getElementById("banner").className = "resultVisible";
+              document.getElementById("banner").style.display = "block";
             } catch (error) {
               console.log(error);
             }
@@ -197,6 +191,7 @@
           return result;
         }
 
+        document.getElementById("banner").style.display = "none"
         let result = parseQS();
         let jsonParams = JSON.stringify(result);
         let jsonArr = JSON.parse(jsonParams);
